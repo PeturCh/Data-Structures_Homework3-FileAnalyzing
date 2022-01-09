@@ -18,6 +18,7 @@ class tree
 {
     private:
     node *root{};
+    size_t elementsCount{};
 
     node* copy(node *other)
     {
@@ -165,6 +166,11 @@ class tree
         clear(root);
     }
     
+    const size_t getElementCount() const
+    {
+        return elementsCount;
+    }
+
     const node* getRoot() const
     {
         return root;
@@ -173,6 +179,7 @@ class tree
     void insert(const std::string &word, const size_t &count = 1)
     {
         root = insert(root, word, count);
+        elementsCount += count;
     }
 
     bool contains(const std::string &word) const
@@ -190,6 +197,31 @@ class tree
         return getAll(root);
     }
 
+    std::vector<node*> getNodes() const
+    {
+        return getNodes(root);
+    }
+
+
+    std::vector<node*> getNodes(node *current) const
+    {
+        std::vector<node*> words;
+
+        if(!current)
+            return words;
+
+        if (current->left)
+            words = getNodes(current->left);
+
+        words.push_back(current);
+        
+        if (current->right)
+        {
+            auto rightWords = getNodes(current->right);
+            words.insert(words.end(), rightWords.begin(), rightWords.end());
+        }
+        return words;
+    }
 
     std::vector<std::string> getAll(const node *node) const
     {
