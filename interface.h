@@ -2,7 +2,7 @@
 #include <iostream>
 #include <set>
 #include <string>
-#include "tree.cpp"
+#include "tree.hpp"
 
 ///
 /// Represents a multiset of words
@@ -17,23 +17,13 @@ class WordsMultiset {
 private:
 	tree wordsTree{};
 
-	const size_t getUnique(const node *curr) const;
-
-	
 public:
-
-	WordsMultiset& operator=(const WordsMultiset &other)
-	{
-		wordsTree = other.wordsTree;
-		return *this;
-	}
 	/// Adds times occurences of word to the container
 	///
 	/// For example, add("abc") adds the word "abc" once,
 	/// while add("abc", 4) adds 4 occurrances.
 	void add(const std::string& word, size_t times = 1);
 
-	const size_t getSize() const;
 	/// Checks whether word is contained in the container
 	bool contains(const std::string& word) const;
 

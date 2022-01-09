@@ -18,7 +18,7 @@ class tree
 {
     private:
     node *root{};
-    size_t elementsCount{};
+    size_t size{};
 
     node* copy(node *other)
     {
@@ -77,6 +77,7 @@ class tree
     {
         if (!curr)
         {
+            size++;
             return new node(_word, _count, 1);
         }
 
@@ -165,10 +166,10 @@ class tree
     {   
         clear(root);
     }
-    
-    const size_t getElementCount() const
+
+    const size_t getSize() const
     {
-        return elementsCount;
+        return size;
     }
 
     const node* getRoot() const
@@ -179,7 +180,6 @@ class tree
     void insert(const std::string &word, const size_t &count = 1)
     {
         root = insert(root, word, count);
-        elementsCount += count;
     }
 
     bool contains(const std::string &word) const
@@ -245,58 +245,3 @@ class tree
     }
 
 };
-/*
-int main()
-{
-
-    const std::string a = "10";
-    const std::string b = "4";
-    const std::string c = "72";
-    const std::string d = "10";
-    const std::string f = "34";
-    const std::string g = "14";
-    const std::string h = "8";
-    tree tr;
-    tree tr2;
-
-    tr.insert(a,5);
-    tr.insert(b);
-    tr.insert(c);
-    tr.insert(d);
-    tr.insert(f);
-    tr.insert(g);
-    tr.insert(h);
-    tr.insert("yes");
-    tr2 = tr;
-    auto v = tr.getAll(tr.getRoot());
-    auto v2 = tr2.getAll(tr2.getRoot());
-    for (auto &&i : v)
-    {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
-    for (auto &&i : v2)
-    {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
-    tr.insert("yes");
-    tr2.insert("yesb", 3);
-    v = tr.getAll(tr.getRoot());
-    v2 = tr2.getAll(tr2.getRoot());
-    for (auto &&i : v)
-    {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
-    for (auto &&i : v2)
-    {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
-
-    std::cout<< tr.contains("n");
-    std::cout<< tr2.contains("yesb");
-
-    return 0;
-}*/

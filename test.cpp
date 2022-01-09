@@ -1,7 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "implementation.cpp"
-//#include "interface.h"
+#include "implementation.hpp"
 
 SCENARIO("WordsMultiset stores data correctly when adding words consecutively")
 {
@@ -47,7 +46,6 @@ SCENARIO("WordsMultiset stores data correctly when adding words consecutively")
 			{
 				std::multiset<std::string> expected{ "one","one","two","three" };
 				REQUIRE(expected == wl.words());
-		
 			}
 		}
 	}
@@ -87,7 +85,6 @@ SCENARIO("WordsMultiset stores data correctly when adding many occurrances in on
 				{
 					std::multiset<std::string> expected{ "one","one","one","one","one" };
 					REQUIRE(expected == wl.words());
-			
 				}
 			}
 		}
