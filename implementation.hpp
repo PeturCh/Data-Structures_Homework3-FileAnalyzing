@@ -1,6 +1,5 @@
 #include "interface.h"
 #include <vector>
-#include <sstream>
 
 /// Adds times occurences of word to the container
 ///
@@ -24,6 +23,20 @@ size_t WordsMultiset::countOf(const std::string& word) const
 	return wordNode ? wordNode->count : 0;
 }
 
+void WordsMultiset::print() const
+{
+	std::vector<std::string> words = wordsTree.getAll();
+	for (auto &&word : words)
+		std::cout<<word<<" ";
+		
+	std::cout<<std::endl;
+}
+
+size_t WordsMultiset::getWordsCount() const
+{
+	return wordsTree.getElementsCount();
+}
+
 /// Number of unique words in the container
 size_t WordsMultiset::countOfUniqueWords() const
 {
@@ -40,8 +53,8 @@ std::multiset<std::string> WordsMultiset::words() const
 ComparisonReport Comparator::compare(std::istream& a, std::istream& b)
 {
 	ComparisonReport cr;
-	tree stream1;
-	tree stream2;
+	AVLTRee stream1;
+	AVLTRee stream2;
 	std::string word;
 	while (a >> word) //n*log(n)
 	    stream1.insert(word);

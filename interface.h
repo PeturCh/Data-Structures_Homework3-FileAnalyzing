@@ -2,7 +2,7 @@
 #include <iostream>
 #include <set>
 #include <string>
-#include "tree.hpp"
+#include "tree.h"
 
 ///
 /// Represents a multiset of words
@@ -15,7 +15,7 @@
 class WordsMultiset {
 
 private:
-	tree wordsTree{};
+	AVLTRee wordsTree{};
 
 public:
 	/// Adds times occurences of word to the container
@@ -29,6 +29,10 @@ public:
 
 	/// Number of occurrances of word 
 	size_t countOf(const std::string& word) const;
+
+	void print() const;
+
+	size_t getWordsCount() const;
 
 	/// Number of unique words in the container
 	size_t countOfUniqueWords() const;
