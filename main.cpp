@@ -8,15 +8,15 @@ int main()
     std::string file1Path;
     std::string file2Path;
 
-    std::ifstream file1;
-    std::ifstream file2;
+    std::ifstream file1{};
+    std::ifstream file2{};
 
     do
     {
-        if(!file2.good() || !file1.good())
+        if(!file2.good() || !file1.good()) //always will be good on the start
             std::cout<<"Incorrect path! Insert again:\n";
 
-        std::cout<<"Enter first file's path: ";
+        std::cout<<"\nEnter first file's path: ";
         std::cin>>file1Path;
         std::cout<<"Enter second file's path: ";
         std::cin>>file2Path;
@@ -28,10 +28,12 @@ int main()
 
     ComparisonReport report = c.compare(file1, file2);
     
-    std::cout<<"The common words between the files are: " << report.commonWords.getWordsCount() << " . They are:\n";
+    std::cout<<"\nReport:\n";
+    std::cout<<"The common words between the files are: " << report.commonWords.getWordsCount() << ". They are:\n";
     report.commonWords.print();
-    std::cout<<"The unique words to the first file (in the first but not in the second) are: " << report.uniqueWords[0].getWordsCount() << " . They are:\n";
+    std::cout<<"\nThe unique words to the first file (in the first but not in the second) are: " << report.uniqueWords[0].getWordsCount() << ". They are:\n";
     report.uniqueWords[0].print();
-    std::cout<<"The unique words to the second file (in the second but not in the first) are: " << report.uniqueWords[1].getWordsCount() << " . They are:\n";
+    std::cout<<"\nThe unique words to the second file (in the second but not in the first) are: " << report.uniqueWords[1].getWordsCount() << ". They are:\n";
     report.uniqueWords[1].print();
+
 }

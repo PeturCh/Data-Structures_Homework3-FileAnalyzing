@@ -52,44 +52,44 @@ std::multiset<std::string> WordsMultiset::words() const
 
 ComparisonReport Comparator::compare(std::istream& a, std::istream& b)
 {
-	ComparisonReport cr;
-	AVLTRee stream1;
-	AVLTRee stream2;
+	ComparisonReport report;
+	AVLTRee file1Words;
+	AVLTRee file2Words;
 	std::string word;
 	while (a >> word) //n*log(n)
-	    stream1.insert(word);
+	    file1Words.insert(word);
 
 	while (b >> word)
-	    stream2.insert(word);
+	    file2Words.insert(word);
 
-	std::vector<node*> stream1Nodes = stream1.getNodes();
+	std::vector<node*> stream1Nodes = file1Words.getNodes();
 
 	for (auto &&n : stream1Nodes)
 	{
-		if(auto n2 = stream2.getNode(n->word))
+		if(auto n2 = file2Words.getNode(n->word))
 		{
 			int diff = n->count - n2->count;
 			if(diff > 0) 
-				cr.uniqueWords[0].add(n->word,diff);
+				report.uniqueWords[0].add(n->word,diff);
 
-			cr.commonWords.add(n->word, std::min(n2->count, n->count));
+			report.commonWords.add(n->word, std::min(n2->count, n->count));
 		}
-		else cr.uniqueWords[0].add(n->word,n->count);
+		else report.uniqueWords[0].add(n->word,n->count);
 	}
 
-	std::vector<node*> stream2Nodes = stream2.getNodes();
+	std::vector<node*> stream2Nodes = file2Words.getNodes();
 	for (auto &&n : stream2Nodes)
 	{
-		if(auto n2 = stream1.getNode(n->word))
+		if(auto n2 = file1Words.getNode(n->word))
 		{
 			int diff = n->count - n2->count;
 			if(diff > 0) 
-				cr.uniqueWords[1].add(n->word,diff);
+				report.uniqueWords[1].add(n->word,diff);
 
 		}
-		else cr.uniqueWords[1].add(n->word,n->count);
+		else report.uniqueWords[1].add(n->word,n->count);
 	}
-	return cr;
+	return report;
 }
 
 	// You can add additional members if you need to
