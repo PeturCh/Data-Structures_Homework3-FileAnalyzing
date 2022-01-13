@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "implementation.hpp"
+#include "interface.h"
 
 int main()
 {

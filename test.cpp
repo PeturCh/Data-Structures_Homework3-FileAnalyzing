@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "implementation.hpp"
+#include "interface.h"
 
 SCENARIO("WordsMultiset stores data correctly when adding words consecutively")
 {

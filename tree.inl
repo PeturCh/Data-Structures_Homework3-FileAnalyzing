@@ -67,7 +67,6 @@ node* AVLTRee::insert(node *curr, const std::string _word, size_t _count)
         {
             throw std::bad_alloc();
         }
-        
     }
 
     if(curr->word == _word)

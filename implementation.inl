@@ -1,22 +1,15 @@
-#include "interface.h"
 #include <vector>
 
-/// Adds times occurences of word to the container
-///
-/// For example, add("abc") adds the word "abc" once,
-/// while add("abc", 4) adds 4 occurrances.
 void WordsMultiset::add(const std::string& word, size_t times)
 {
     wordsTree.insert(word, times);
 }
 
-/// Checks whether word is contained in the container
 bool WordsMultiset::contains(const std::string& word) const
 {
 	return wordsTree.contains(word);
 }   
 
-/// Number of occurrances of word 
 size_t WordsMultiset::countOf(const std::string& word) const
 {
 	auto wordNode = wordsTree.getNode(word);
@@ -37,13 +30,11 @@ size_t WordsMultiset::getWordsCount() const
 	return wordsTree.getElementsCount();
 }
 
-/// Number of unique words in the container
 size_t WordsMultiset::countOfUniqueWords() const
 {
     return wordsTree.getSize();
 }
 
-/// Returns a multiset of all words in the container
 std::multiset<std::string> WordsMultiset::words() const
 {
 	std::vector<std::string> allWords = wordsTree.getAll();
@@ -91,5 +82,3 @@ ComparisonReport Comparator::compare(std::istream& a, std::istream& b)
 	}
 	return report;
 }
-
-	// You can add additional members if you need to
